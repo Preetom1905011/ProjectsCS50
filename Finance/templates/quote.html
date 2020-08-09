@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input id="sym" autocomplete="off" class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button id="sub" class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    <script>
+        document.querySelector('form').onsubmit = function(){
+            if (!document.querySelector('#sym').value)
+            {
+                alert('You must provide quote symbol!');
+                return false;
+            }
+            return true;
+        };
+    </script>
+{% endblock %}

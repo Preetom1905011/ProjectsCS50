@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input id="r_name" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input id="r_pass" class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input id="rc_pass" class="form-control" name="confirmpass" placeholder="Confirm Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <script>
+        document.querySelector('form').onsubmit = function(){
+            if (!document.querySelector('#r_name').value)
+            {
+                alert('You must provide Username!');
+                return false;
+            }
+            if (!document.querySelector('#r_pass').value)
+            {
+                alert('You must provide Password!');
+                return false;
+            }
+            if (!document.querySelector('#rc_pass').value)
+            {
+                alert('You must confirm Password!');
+                return false;
+            }
+            return true;
+        };
+    </script>
+{% endblock %}
