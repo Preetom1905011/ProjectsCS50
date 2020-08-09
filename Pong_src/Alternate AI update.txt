@@ -1,0 +1,60 @@
+--[[Pong AI]]--
+
+--computer's reaction distance (global declaration)
+react_dis = 0
+
+
+--this is inside love.update(dt)
+--declaring reaction distance based on diffculty mode
+
+    if difficulty == 'easy' then
+        react_dis = VIRTUAL_WIDTH / 3
+    elseif difficulty == 'medium' then
+        react_dis = VIRTUAL_WIDTH / 2 - 25
+    elseif difficulty == 'hard' then
+        react_dis = VIRTUAL_WIDTH / 2 + 25
+    end
+
+--player and comp commands
+--player1 (left) commands (computer)
+    if gameMode == 'double' then
+
+        --player1 (left) commands
+        if love.keyboard.isDown('w') then
+            player1.dy = -PADDLE_SPEED
+
+        elseif love.keyboard.isDown('s') then
+            player1.dy = PADDLE_SPEED
+
+        else 
+            player1.dy = 0
+
+        end
+
+    elseif gameMode == 'single' then
+
+        --computer commands
+        if ball.x <= react_dis then
+
+            --when paddle is below the ball(Y axis) and ball speed is up
+            if player1.y < ball.y and ball.dy < 0 then
+                player1.dy = PADDLE_SPEED -- paddle dy (+ve) and can't exceed paddle speed
+
+            elseif player1.y > ball.y and ball.dy > 0 then
+                player1.dy = -PADDLE_SPEED -- paddle dy (-ve) and can't exceed paddle speed
+
+            else
+                if ball.dy > 0 then
+                    player1.dy = PADDLE_SPEED -- paddle dy (+ve)
+
+                else
+                    player1.dy = -PADDLE_SPEED -- paddle dy (-ve)
+
+                end
+            end
+    
+            if ball.y > player1.y and ball.y < player1.y + player1.width then
+                player1.dy = 0
+            end
+        end
+    end
