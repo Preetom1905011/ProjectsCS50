@@ -1,7 +1,7 @@
 This is Summervale
 Authored by me, Preetom Kumar Biswas
 
-This was one of my projects during undergrad
+This was one of my projects during CS50 Course
 
 the hero is controlled by up and down arrow keys and space bar(for shooting)
 don't let the monsters cross the left border
